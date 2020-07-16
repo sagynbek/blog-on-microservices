@@ -2,11 +2,24 @@ import React from 'react';
 
 const CommentList = ({ comments }) => {
 
-  const commentContainer = comments.map(comment => (
-    <li key={comment.id}>
-      {comment.content}
-    </li>
-  ))
+  const commentContainer = comments.map(comment => {
+    let content = null;
+    if (comment.status === 'approved') {
+      content = comment.content;
+    }
+    else if (comment.status === "pending") {
+      content = "This comment is awaiting moderation";
+    }
+    else if (comment.status === "rejected") {
+      content = "This comment has been rejected";
+    }
+
+    return (
+      <li key={comment.id}>
+        {content}
+      </li>
+    )
+  })
 
   return (
     <ul>
