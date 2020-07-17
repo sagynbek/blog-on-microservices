@@ -1,0 +1,13 @@
+docker build -t sagyn/[tag_name]:[version] .
+
+
+kubectl get pods
+kubectl get deployments
+kubectl logs [pod_name]
+
+kubectl apply -f [config_file_name].yml
+kubectl rollout restart deployment [deployment_name]
+
+
+
+
