@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comment-moderation-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comment-moderation
+  template:
+    metadata:
+      labels:
+        app: comment-moderation
+    spec:
+      containers:
+        - name: comment-moderation
+          image: sagyn/comment-moderation:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comment-moderation-srv
+spec:
+  selector:
+    app: comment-moderation
+  type: ClusterIP
+  ports:
+    - name: comment-moderation
+      protocol: TCP
+      port: 4003
+      targetPort: 4003
